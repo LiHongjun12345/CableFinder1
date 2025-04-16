@@ -35,7 +35,7 @@ app.post("/api/CableList", async (req, res) => {
 
 // 获取计数
 app.get("/api/CableList", async (req, res) => {
-  const result = await CableList.SN();
+  const result = await CableList.create();
   res.send({
     code: 0,
     data: result,
