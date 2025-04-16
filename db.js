@@ -12,21 +12,21 @@ const sequelize = new Sequelize("wechat_qrinfo", MYSQL_USERNAME, MYSQL_PASSWORD,
 });
 
 // 定义数据模型
-// const Counter = sequelize.define("Counter", {
-//   count: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//     defaultValue: 1,
-//   },
-// });
+const Counter = sequelize.define("Counter", {
+  count: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 1,
+  },
+});
 
 // 数据库初始化方法
-// async function init() {
-//   await Counter.sync({ alter: true });
-// }
+async function init() {
+  await Counter.sync({ alter: true });
+}
 
 // 导出初始化方法和模型
 module.exports = {
-  //init,
-  sequelize,
+  init,
+  Counter,
 };

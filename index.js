@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { sequelize } = require("./db");
+const { init: initDB, Counter } = require("./db");
 
 const logger = morgan("tiny");
 
@@ -18,34 +18,28 @@ app.get("/", async (req, res) => {
 });
 
 // 更新计数
-app.post("/api/count", async (req, res) => {
+app.post("/api/CableList", async (req, res) => {
   const { action } = req.body;
   if (action === "inc") {
-    await sequelize.create();
+    await Counter.create();
   } else if (action === "clear") {
-    await sequelize.destroy({
+    await Counter.destroy({
       truncate: true,
     });
   }
   res.send({
     code: 0,
-    data: await sequelize.count(),
+    data: await Counter.count(),
   });
 });
 
 // 获取计数
-app.get("/api/CableList", async (req, res) => {
-  // const result = await sequelize.count();
-  try{
-    const pool = await sequelize;
-    const result = await pool.request().query('SELECT SN, CableUser0, CableUser1 FROM QR_info order by Timestamp desc');
-    return res.json(result.recordset);
-
-  }
-  catch(err){
-    console.error('Error fetching data:', err);
-    return res.status(500).send('Server error'); 
-  }
+app.get("/api/count", async (req, res) => {
+  const result = await Counter.count();
+  res.send({
+    code: 0,
+    data: result,
+  });
 });
 
 // 小程序调用，获取微信 Open ID
