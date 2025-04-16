@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+const { init: initDB, CableList } = require("./db");
 
 const logger = morgan("tiny");
 
@@ -21,21 +21,21 @@ app.get("/", async (req, res) => {
 app.post("/api/CableList", async (req, res) => {
   const { action } = req.body;
   if (action === "inc") {
-    await Counter.create();
+    await CableList.create();
   } else if (action === "clear") {
-    await Counter.destroy({
+    await CableList.destroy({
       truncate: true,
     });
   }
   res.send({
     code: 0,
-    data: await Counter.count(),
+    data: await CableList.count(),
   });
 });
 
 // 获取计数
-app.get("/api/count", async (req, res) => {
-  const result = await Counter.count();
+app.get("/api/CableList", async (req, res) => {
+  const result = await CableList.SN();
   res.send({
     code: 0,
     data: result,
