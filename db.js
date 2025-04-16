@@ -54,6 +54,9 @@ const CableList = sequelize.define("CableList", {
     type: DataTypes.STRING(50),
     allowNull: true
   }
+},
+{
+  tableName: 'qr_info'
 });
 
 // 数据库初始化方法
