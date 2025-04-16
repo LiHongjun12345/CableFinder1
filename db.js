@@ -15,8 +15,7 @@ const sequelize = new Sequelize("wechat_qrinfo", MYSQL_USERNAME, MYSQL_PASSWORD,
 const CableList = sequelize.define("CableList", {
   SN: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    primaryKey: true,
+    allowNull: true,
     defaultValue: 'aa-bb'
   },
   Timestamp: {
