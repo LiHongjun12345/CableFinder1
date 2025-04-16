@@ -35,10 +35,11 @@ app.post("/api/CableList", async (req, res) => {
 
 // 获取计数
 app.get("/api/CableList", async (req, res) => {
-  const result = await CableList.count();
+  const result = await CableList.findAll({
+    attributes: ['SN', 'CableUser0', 'CableUser1']
+  });
   res.send({
-    code: 0,
-    data: result,
+    data: result
   });
 });
 
