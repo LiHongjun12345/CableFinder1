@@ -17,52 +17,43 @@ const CableList = sequelize.define("CableList", {
     type: DataTypes.STRING(50),
     allowNull: false,
     primaryKey: true,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    defaultValue: 'aa-bb'
   },
   Timestamp: {
     type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   OEM: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   Variant: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   Phase: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   Length: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   InorEx: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   CableType: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   CableUser0: {
     type: DataTypes.STRING(50),
-    allowNull: false,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   },
   CableUser1: {
     type: DataTypes.STRING(50),
-    allowNull: true,
-    defaultValue: 'a-b-c-d-e-f-g-h'
+    allowNull: true
   }
 },
 // {
