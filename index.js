@@ -36,7 +36,8 @@ app.post("/api/CableList", async (req, res) => {
 // 获取计数
 app.get("/api/CableList", async (req, res) => {
   const result = await CableList.findAll({
-    attributes: ['SN', 'CableUser0', 'CableUser1']
+    attributes: ['SN', 'CableUser0', 'CableUser1'],
+    raw: true
   });
   res.send({
     data: result
