@@ -64,35 +64,35 @@ const CableList = sequelize.define("CableList", {
 const SampleManage = sequelize.define("sample_manage", {
   ProjectName: {
     type: DataTypes.STRING(50),
-    allowNull: false,
+    allowNull: true,
   },
   SampleName: {
     type: DataTypes.STRING(50),
-    allowNull: false
+    allowNull: true
   },
   StorageLocation: {
     type: DataTypes.STRING(50),
-    allowNull: false
+    allowNull: true
   },
   BOM: {
     type: DataTypes.STRING(50),
-    allowNull: false
+    allowNull: true
   },
   SN: {
     type: DataTypes.STRING(50),
-    allowNull: false
+    allowNull: true
   },
   Receiver: {
     type: DataTypes.STRING(50),
-    allowNull: false
+    allowNull: true
   },
   DeliveryDate: {
     type: DataTypes.DATEONLY,
-    allowNull: false
+    allowNull: true
   },
   Comment: {
     type: DataTypes.STRING(200),
-    allowNull: false
+    allowNull: true
   },
   // UpdateTime: {
   //   type: DataTypes.DATE,
