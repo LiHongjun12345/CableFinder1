@@ -94,7 +94,7 @@ app.post('/api/SampleTrace', async (req, res) => {
         attributes: ['DeliveryDate', 'StorageLocation', 'Receiver', 'Comment'],
         where: { ProjectName: ProjectName,
                 SN: SN },
-        order: [['DeliveryDate', 'DESC']]
+        order: [['UpdateTime', 'DESC']]
       })
         console.log(result);
         return res.json(result);
