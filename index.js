@@ -44,6 +44,16 @@ app.get("/api/CableList", async (req, res) => {
   });
 });
 
+app.get("/api/sample", async (req, res) => {
+  const result = await SampleManage.findAll({
+    attributes: ['ProjectName', 'SampleName', 'BOM'],
+    raw: true
+  });
+  res.send({
+    data: result
+  });
+});
+
 // //样件登记
 app.post('/api/sample', async (req, res) => {
     
