@@ -57,11 +57,11 @@ app.get("/api/sample", async (req, res) => {
 // //样件登记
 app.post('/api/sample', async (req, res) => {
     
-  const { ProjectName, SampleName, StorageLocation, BOM, SN, Receiver, Comment} = req.body; // 替换为你的表字段 删除 DeliveryDate
+  const { ProjectName, SampleName, StorageLocation, BOM, SN, Receiver, DeliveryDate,Comment} = req.body; // 替换为你的表字段 
   
   try {
       const dut = await SampleManage.create({
-        ProjectName, SampleName, StorageLocation, BOM, SN, Receiver, Comment
+        ProjectName, SampleName, StorageLocation, BOM, SN, Receiver, DeliveryDate, Comment
       })
       return res.status(201).json(dut);
   } catch (err) {
