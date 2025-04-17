@@ -94,11 +94,11 @@ const SampleManage = sequelize.define("sample_manage", {
     type: DataTypes.STRING(200),
     allowNull: false
   },
-  UpdateTime: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: sequelize.fn('NOW')
-  }
+  // UpdateTime: {
+  //   type: DataTypes.DATE,
+  //   allowNull: false,
+  //   defaultValue: sequelize.fn('NOW')
+  // }
 },
 {
   tableName: 'sample_manage',

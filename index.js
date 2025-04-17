@@ -66,7 +66,7 @@ app.post('/api/sample', async (req, res) => {
       return res.status(201).json(dut);
   } catch (err) {
       console.error('Error inserting data:', err);
-      return res.status(500).send('Server error!',err);
+      return res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
