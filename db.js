@@ -61,6 +61,51 @@ const CableList = sequelize.define("CableList", {
 }
 );
 
+const SampleManage = sequelize.define("SampleManage", {
+  ProjectName: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  SampleName: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  StorageLocation: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  BOM: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  SN: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  Receiver: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  DeliveryDate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
+  },
+  Comment: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  UpdateTime: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.fn('NOW')
+  }
+},
+{
+  tableName: 'SampleManage',
+  timestamps: false
+}
+);
+
 // 数据库初始化方法
 async function init() {
   await CableList.sync({ alter: true });
@@ -70,4 +115,5 @@ async function init() {
 module.exports = {
   init,
   CableList,
+  SampleManage
 };

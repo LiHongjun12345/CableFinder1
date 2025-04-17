@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, CableList } = require("./db");
+const { init: initDB, CableList, SampleManage } = require("./db");
 
 const logger = morgan("tiny");
 
@@ -33,7 +33,7 @@ app.post("/api/CableList", async (req, res) => {
   });
 });
 
-// 获取计数
+// 获取线束列表
 app.get("/api/CableList", async (req, res) => {
   const result = await CableList.findAll({
     attributes: ['SN', 'CableUser0', 'CableUser1'],
@@ -42,6 +42,22 @@ app.get("/api/CableList", async (req, res) => {
   res.send({
     data: result
   });
+});
+
+// //样件登记
+app.post('/api/sample', async (req, res) => {
+    
+  const { ProjectName, SampleName, StorageLocation, BOM, SN, Receiver, DeliveryDate, Comment} = req.body; // 替换为你的表字段
+  
+  try {
+      const dut = await SampleManage.create({
+        ProjectName, SampleName, StorageLocation, BOM, SN, Receiver, DeliveryDate, Comment
+      })
+      return res.status(201).json(dut);
+  } catch (err) {
+      console.error('Error inserting data:', err);
+      return res.status(500).send('Server error!');
+  }
 });
 
 // 小程序调用，获取微信 Open ID
