@@ -86,6 +86,24 @@ app.post('/api/scanCode', async (req, res) => {
   }
 });
 
+// //获取样机的所有流转信息
+app.post('/api/SampleTrace', async (req, res) => {    
+  const { ProjectName, SN } = req.body; 
+  try {
+      const result = await SampleManage.findAll({
+        attributes: ['DeliveryDate', 'StorageLocation', 'Receiver', 'Comment'],
+        where: { ProjectName: ProjectName,
+                SN: SN },
+        order: [['DeliveryDate', 'DESC']]
+      })
+        console.log(result);
+        return res.json(result);
+  } catch (err) {
+      console.error('Error finding data:', err);
+      return res.status(500).son({ message: 'Server error', error: err.message });
+  }
+});
+
 // 小程序调用，获取微信 Open ID
 app.get("/api/wx_openid", async (req, res) => {
   if (req.headers["x-wx-source"]) {
