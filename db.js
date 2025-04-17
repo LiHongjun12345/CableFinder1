@@ -9,6 +9,7 @@ const sequelize = new Sequelize("wechat_qrinfo", MYSQL_USERNAME, MYSQL_PASSWORD,
   host,
   port,
   dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+  timezone: '+8:00'
 });
 
 // 定义数据模型
