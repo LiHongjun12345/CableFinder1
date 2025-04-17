@@ -70,6 +70,22 @@ app.post('/api/sample', async (req, res) => {
   }
 });
 
+// //扫码获取样机的最早录入信息
+app.post('/api/scanCode', async (req, res) => {    
+  const { SN } = req.body; 
+  try {
+      const result = await SampleManage.findOne({
+        where: {SN: SN},
+        order: [['UpdateTime', 'ASC']]
+      });
+          console.log(result);
+          return res.send(result);
+  } catch (err) {
+      console.error('Error finding data:', err);
+      return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // 小程序调用，获取微信 Open ID
 app.get("/api/wx_openid", async (req, res) => {
   if (req.headers["x-wx-source"]) {
