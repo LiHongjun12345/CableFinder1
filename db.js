@@ -61,7 +61,7 @@ const CableList = sequelize.define("CableList", {
 }
 );
 
-const SampleManage = sequelize.define("SampleManage", {
+const SampleManage = sequelize.define("sample_manage", {
   ProjectName: {
     type: DataTypes.STRING(50),
     allowNull: false,
@@ -101,7 +101,7 @@ const SampleManage = sequelize.define("SampleManage", {
   }
 },
 {
-  tableName: 'SampleManage',
+  tableName: 'sample_manage',
   timestamps: false
 }
 );
