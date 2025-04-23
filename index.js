@@ -122,7 +122,7 @@ app.post('/api/filter', async(req, res) => {
     console.log(req.body);
     return res.json(result)
   }catch(err) {
-    console.error('Error finding data:', err);
+    console.error('Error finding data:', err, whereConditions);
     return res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
