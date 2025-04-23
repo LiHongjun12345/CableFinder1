@@ -100,7 +100,7 @@ app.post('/api/SampleTrace', async (req, res) => {
         return res.json(result);
   } catch (err) {
       console.error('Error finding data:', err);
-      return res.status(500).son({ message: 'Server error', error: err.message });
+      return res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -119,9 +119,11 @@ app.post('/api/filter', async(req, res) => {
       order: [['UpdateTime', 'DESC']]
     });
     console.log(result);
+    console.log(req.body);
     return res.json(result)
   }catch(err) {
-
+    console.error('Error finding data:', err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
