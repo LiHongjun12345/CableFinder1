@@ -108,10 +108,10 @@ app.post('/api/SampleTrace', async (req, res) => {
 app.post('/api/filter', async(req, res) => {
   const { ProjectName, SN, StorageLocation, Receiver } = req.body;
   const whereConditions = {};
-  if(ProjectName) whereConditions.column1 = ProjectName;
-  if(SN) whereConditions.column2 = SN;
-  if(StorageLocation) whereConditions.column3 = StorageLocation;
-  if(Receiver) whereConditions.column4 = Receiver;
+  if(ProjectName) whereConditions.ProjectName = ProjectName;
+  if(SN) whereConditions.SN = SN;
+  if(StorageLocation) whereConditions.StorageLocation = StorageLocation;
+  if(Receiver) whereConditions.Receiver = Receiver;
   try{
     const result = await SampleManage.findAll({
       attributes: ['ProjectName', 'SampleName', 'StorageLocation', 'BOM', 'SN', 'Receiver', 'DeliveryDate', 'Comment'],
