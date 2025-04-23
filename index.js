@@ -43,7 +43,7 @@ app.get("/api/CableList", async (req, res) => {
     data: result
   });
 });
-
+// 获取样件整体列表
 app.get("/api/sample", async (req, res) => {
   const result = await SampleManage.findAll({
     attributes: ['id', 'ProjectName', 'SampleName', 'StorageLocation', 'BOM', 'SN', 'Receiver', 'DeliveryDate', 'Comment'],
@@ -86,7 +86,7 @@ app.post('/api/scanCode', async (req, res) => {
   }
 });
 
-// //获取样机的所有流转信息
+// //获取当前样机的所有流转信息
 app.post('/api/SampleTrace', async (req, res) => {    
   const { ProjectName, SN } = req.body; 
   try {
@@ -101,6 +101,27 @@ app.post('/api/SampleTrace', async (req, res) => {
   } catch (err) {
       console.error('Error finding data:', err);
       return res.status(500).son({ message: 'Server error', error: err.message });
+  }
+});
+
+//样件检索功能
+app.post('/api/filter', async(req, res) => {
+  const { ProjectName, SN, StorageLocation, Receiver } = req.body;
+  const whereConditions = {};
+  if(ProjectName) whereConditions.column1 = ProjectName;
+  if(SN) whereConditions.column2 = SN;
+  if(StorageLocation) whereConditions.column3 = StorageLocation;
+  if(Receiver) whereConditions.column4 = Receiver;
+  try{
+    const result = await SampleManage.findAll({
+      attributes: ['ProjectName', 'SampleName', 'StorageLocation', 'BOM', 'SN', 'Receiver', 'DeliveryDate', 'Comment'],
+      where: whereConditions,
+      order: [['UpdateTime', 'DESC']]
+    });
+    console.log(result);
+    return res.json(result)
+  }catch(err) {
+
   }
 });
 
