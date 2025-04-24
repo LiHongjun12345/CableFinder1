@@ -127,6 +127,25 @@ app.post('/api/filter', async(req, res) => {
   }
 });
 
+//后台删除表格内容
+app.post('/api/delete', async(req, res) => {
+  const { ProjectName, SN, StorageLocation, Receiver } = req.body;
+  const whereConditions = {};
+  if(ProjectName) whereConditions.ProjectName = ProjectName;
+  if(SN) whereConditions.SN = SN;
+  if(StorageLocation) whereConditions.StorageLocation = StorageLocation;
+  if(Receiver) whereConditions.Receiver = Receiver;
+  try{
+    await SampleManage.destroy({
+      where: whereConditions
+    });
+    console.log('delete succeed!');
+  }catch(err) {
+    console.error('Error deleting data:', err, whereConditions);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // 小程序调用，获取微信 Open ID
 app.get("/api/wx_openid", async (req, res) => {
   if (req.headers["x-wx-source"]) {
