@@ -129,12 +129,9 @@ app.post('/api/filter', async(req, res) => {
 
 //后台删除表格内容
 app.post('/api/delete', async(req, res) => {
-  const { ProjectName, SN, StorageLocation, Receiver } = req.body;
+  const { id } = req.body;
   const whereConditions = {};
-  if(ProjectName) whereConditions.ProjectName = ProjectName;
-  if(SN) whereConditions.SN = SN;
-  if(StorageLocation) whereConditions.StorageLocation = StorageLocation;
-  if(Receiver) whereConditions.Receiver = Receiver;
+  whereConditions.id = id;
   try{
     await SampleManage.destroy({
       where: whereConditions
