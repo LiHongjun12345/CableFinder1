@@ -136,7 +136,7 @@ app.post('/api/delete', async(req, res) => {
     await SampleManage.destroy({
       where: whereConditions
     });
-    console.log('delete succeed!');
+    return res.json({message: 'delete succeeded !'});
   }catch(err) {
     console.error('Error deleting data:', err, whereConditions);
     return res.status(500).json({ message: 'Server error', error: err.message });
