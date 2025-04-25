@@ -93,12 +93,12 @@ const SampleManage = sequelize.define("sample_manage", {
   Comment: {
     type: DataTypes.STRING(200),
     allowNull: true
-  },
-  UpdateTime: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: sequelize.fn('NOW')
-  }
+  }//,
+//  UpdateTime: {
+//    type: DataTypes.DATE,
+//    allowNull: false,
+//    defaultValue: sequelize.fn('NOW')
+//  }
 },
 {
   tableName: 'sample_manage',
@@ -108,7 +108,7 @@ const SampleManage = sequelize.define("sample_manage", {
 
 // 数据库初始化方法
 async function init() {
-  await CableList.sync({ alter: true });
+  await SampleManage.sync({ alter: true });
 }
 
 // 导出初始化方法和模型
