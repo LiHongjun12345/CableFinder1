@@ -8,8 +8,7 @@ const [host, port] = MYSQL_ADDRESS.split(":");
 const sequelize = new Sequelize("wechat_qrinfo", MYSQL_USERNAME, MYSQL_PASSWORD, {
   host,
   port,
-  dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
-  timezone: '+8:00'
+  dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
 });
 
 // 定义数据模型
