@@ -35,6 +35,14 @@ app.post("/api/CableList", async (req, res) => {
 
 // 获取线束列表
 app.get("/api/CableList", async (req, res) => {
+  await CableList.update(
+    { CableUser1: CableUser0 },
+    {
+      where:{
+        CableUser1: null,
+      }
+    }
+  );
   const result = await CableList.findAll({
     attributes: ['SN', 'CableUser0', 'CableUser1'],
     raw: true
@@ -42,6 +50,21 @@ app.get("/api/CableList", async (req, res) => {
   res.send({
     data: result
   });
+});
+
+//获取选取线束的信息
+app.post("api/Users", async(req, res) => {
+  const { SN } = req.body;
+  try{
+    const Cable = await CableList.findByPk(SN, {
+      attributes: ['SN', 'OEM', 'Variant', 'Phase', 'Length', 'InorEx', 'CableType', 'CableUser0', 'CableUser1'],
+    });
+    return res.json(Cable);
+  }catch{
+    console.error('Error inserting data:', err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+
 });
 // 获取样件整体列表
 app.get("/api/sample", async (req, res) => {
