@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { init: initDB, CableList, SampleManage } = require("./db");
+const sequelize = require("sequelize");
 
 const logger = morgan("tiny");
 
@@ -36,7 +37,7 @@ app.post("/api/CableList", async (req, res) => {
 // 获取线束列表
 app.get("/api/CableList", async (req, res) => {
   await CableList.update(
-    { CableUser1: CableUser0 },
+    { CableUser1: sequelize.col('CableUser0') },
     {
       where:{
         CableUser1: null,
