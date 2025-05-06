@@ -108,7 +108,7 @@ const SampleManage = sequelize.define("sample_manage", {
 
 // 数据库初始化方法
 async function init() {
-  await SampleManage.sync({ alter: true });
+  // await SampleManage.sync({ alter: true });
 }
 
 // 导出初始化方法和模型

@@ -67,6 +67,30 @@ app.post("/api/Users", async(req, res) => {
   }
 
 });
+
+//扫码时检查该线束是否已上传数据库，若无则自动上传
+app.post("/api/Checkdata", async(req, res) => {
+  const { SN, OEM, Variant, Phase, Length, InorEx, CableType, CableUser0 } = req.body;
+  try{
+    const [cable, created] = await CableList.findOrCreate({
+      where: { SN: SN },
+      defaults: {
+        OEM: OEM,
+        Variant: Variant,
+        Phase: Phase,
+        Length: Length,
+        InorEx: InorEx,
+        CableType, CableType,
+        CableUser0, CableUser0
+      }
+    });
+    return res.send(cable, created);
+  }catch{
+    console.error('Error inserting data:', err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+})
+
 // 获取样件整体列表
 app.get("/api/sample", async (req, res) => {
   const result = await SampleManage.findAll({
