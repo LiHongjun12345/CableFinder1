@@ -58,7 +58,7 @@ app.post("/api/Users", async(req, res) => {
   const { SN } = req.body;
   try{
     const Cable = await CableList.findByPk(SN, {
-      attributes: ['SN', 'OEM', 'Variant', 'Phase', 'Length', 'InorEx', 'CableType', 'CableUser0', 'CableUser1'],
+      attributes: ['CableUser0', 'CableUser1'],
     });
     return res.json(Cable);
   }catch{
