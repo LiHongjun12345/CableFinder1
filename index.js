@@ -54,7 +54,7 @@ app.get("/api/CableList", async (req, res) => {
 });
 
 //获取选取线束的信息
-app.post("api/Users", async(req, res) => {
+app.post("/api/Users", async(req, res) => {
   const { SN } = req.body;
   try{
     const Cable = await CableList.findByPk(SN, {
