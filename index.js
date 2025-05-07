@@ -90,7 +90,7 @@ app.post("/api/Checkdata", async(req, res) => {
     console.error('Error inserting data:', err);
     return res.status(500).json({ message: 'Server error', error: err.message });
   }
-})
+});
 
 // 获取样件整体列表
 app.get("/api/sample", async (req, res) => {
