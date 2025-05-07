@@ -70,18 +70,19 @@ app.post("/api/Users", async(req, res) => {
 
 //扫码时检查该线束是否已上传数据库，若无则自动上传
 app.post("/api/Checkdata", async(req, res) => {
-  const { SN, OEM, Variant, Phase, Length, InorEx, CableType, CableUser0 } = req.body;
+  const { SN, OEM/*, Variant, Phase, Length, InorEx, CableType, CableUser0*/ } = req.body;
+  console.log(SN);
   try{
     const [cable, created] = await CableList.findOrCreate({
       where: { SN: SN },
       defaults: {
         OEM: OEM,
-        Variant: Variant,
-        Phase: Phase,
-        Length: Length,
-        InorEx: InorEx,
-        CableType: CableType,
-        CableUser0: CableUser0
+        // Variant: Variant,
+        // Phase: Phase,
+        // Length: Length,
+        // InorEx: InorEx,
+        // CableType: CableType,
+        // CableUser0: CableUser0
       }
     });
     return res.send(cable, created);
