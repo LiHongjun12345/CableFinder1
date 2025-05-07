@@ -80,8 +80,8 @@ app.post("/api/Checkdata", async(req, res) => {
         Phase: Phase,
         Length: Length,
         InorEx: InorEx,
-        CableType, CableType,
-        CableUser0, CableUser0
+        CableType: CableType,
+        CableUser0: CableUser0
       }
     });
     return res.send(cable, created);

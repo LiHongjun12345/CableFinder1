@@ -18,10 +18,10 @@ const CableList = sequelize.define("CableList", {
     allowNull: false,
     primaryKey: true
   },
-  Timestamp: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
+  // Timestamp: {
+  //   type: DataTypes.DATE,
+  //   allowNull: true
+  // },
   OEM: {
     type: DataTypes.STRING(50),
     allowNull: true
