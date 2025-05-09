@@ -61,7 +61,7 @@ app.post("/api/Users", async(req, res) => {
       attributes: ['CableUser0', 'CableUser1'],
     });
     return res.json(Cable);
-  }catch{
+  }catch(err){
     console.error('Error inserting data:', err);
     return res.status(500).json({ message: 'Server error', error: err.message });
   }
@@ -76,8 +76,8 @@ app.post('/api/Checkdata', async(req, res) => {
     const amount = await CableList.count({
       where: { "SN": SN }
     });
-    res.send(amount);
-  }catch{
+    res.json({count: amount});
+  }catch(err){
     console.error('Error inserting data:', err);
     return res.status(500).json({ message: 'Server error', error: err.message });
   }
