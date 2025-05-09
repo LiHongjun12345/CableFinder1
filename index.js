@@ -85,9 +85,9 @@ app.post('/api/Checkdata', async(req, res) => {
         CableUser0: CableUser0
       }
     });
-    res.json(cable, created);
+    res.json({ cable, created });
   }catch(err){
-    console.error('Error inserting data:', err);
+    console.error('Error checking/creating data: ', err);
     return res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
