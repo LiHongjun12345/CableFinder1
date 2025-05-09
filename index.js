@@ -70,22 +70,13 @@ app.post("/api/Users", async(req, res) => {
 
 //扫码时检查该线束是否已上传数据库，若无则自动上传
 app.post("/api/Checkdata", async(req, res) => {
-  //const { SN/*, OEM, Variant, Phase, Length, InorEx, CableType, CableUser0*/ } = req.body;
-  //console.log(SN);
+  const { SN/*, OEM, Variant, Phase, Length, InorEx, CableType, CableUser0*/ } = req.body;
+  console.log(SN);
   try{
-    const [cable, created] = await CableList.findOrCreate({
-      where: { SN: "Audi_AxPa2_C1_Kl_E_L_0Kl" },
-      defaults: {
-        OEM: "Audi",
-        Variant: "AxPa2",
-        Phase: "C",
-        Length: "100",
-        InorEx: "I",
-        CableType: "H",
-        CableUser0: "Commi"
-      }
+    const amount = await CableList.count({
+      where: { SN: SN }
     });
-    return res.send(cable, created);
+    return res.send(amount);
   }catch{
     console.error('Error inserting data:', err);
     return res.status(500).json({ message: 'Server error', error: err.message });
