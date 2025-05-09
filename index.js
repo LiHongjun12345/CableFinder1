@@ -19,20 +19,20 @@ app.get("/", async (req, res) => {
 });
 
 // 更新计数
-// app.post("/api/CableList", async (req, res) => {
-//   const { action } = req.body;
-//   if (action === "inc") {
-//     await CableList.create();
-//   } else if (action === "clear") {
-//     await CableList.destroy({
-//       truncate: true,
-//     });
-//   }
-//   res.send({
-//     code: 0,
-//     data: await CableList.count(),
-//   });
-// });
+app.post("/api/CableList", async (req, res) => {
+  const { action } = req.body;
+  if (action === "inc") {
+    await CableList.create();
+  } else if (action === "clear") {
+    await CableList.destroy({
+      truncate: true,
+    });
+  }
+  res.send({
+    code: 0,
+    data: await CableList.count(),
+  });
+});
 
 // 获取线束列表
 app.get("/api/CableList", async (req, res) => {
@@ -69,12 +69,18 @@ app.post("/api/Users", async(req, res) => {
 });
 
 //扫码时检查该线束是否已上传数据库，若无则自动上传
-app.post('/api/abc', async(req, res) => {
-  // const { SN } = req.body;
-  // const amount = await CableList.count({
-  //   where: {SN: SN}
-  // });
-  res.send("123");
+app.post('/api/Checkdata', async(req, res) => {
+  const { SN } = req.body;
+  console.log(SN);
+  try{
+    const amount = await CableList.count({
+      where: { "SN": SN }
+    });
+    res.send(amount);
+  }catch{
+    console.error('Error inserting data:', err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
 });
 
 // 获取样件整体列表
