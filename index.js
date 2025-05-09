@@ -69,12 +69,12 @@ app.post("/api/Users", async(req, res) => {
 });
 
 //扫码时检查该线束是否已上传数据库，若无则自动上传
-app.post("/api/abc", async(req, res) => {
-  const { SN } = req.body;
-  const amount = await CableList.count({
-    where: {SN: SN}
-  });
-  res.send(amount);
+app.post('/api/abc', async(req, res) => {
+  // const { SN } = req.body;
+  // const amount = await CableList.count({
+  //   where: {SN: SN}
+  // });
+  res.send("123");
 });
 
 // 获取样件整体列表
