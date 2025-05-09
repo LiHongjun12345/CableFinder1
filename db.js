@@ -38,7 +38,7 @@ const CableList = sequelize.define("CableList", {
     type: DataTypes.STRING(50),
     allowNull: true
   },
-  InorEx: {
+  InOrEx: {
     type: DataTypes.STRING(50),
     allowNull: true
   },
