@@ -68,6 +68,22 @@ app.post("/api/Users", async(req, res) => {
 
 });
 
+//更新当前线束使用者
+app.post('/api/newUser', async(req, res) => {
+  const { SN, CableUser1 } = req.body;
+  try{
+    const newUser = await CableList.update({ CableUser1 },
+      {
+        where: { SN }
+      }
+    );
+    res.json(newUser);
+  }catch(err){
+    console.error('Error inserting data:', err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 //扫码时检查该线束是否已上传数据库，若无则自动上传
 app.post('/api/Checkdata', async(req, res) => {
   const { SN, OEM, Variant, Phase, Length, InOrEx, CableType, CableUser0 } = req.body;
