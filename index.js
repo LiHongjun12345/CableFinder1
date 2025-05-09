@@ -19,20 +19,20 @@ app.get("/", async (req, res) => {
 });
 
 // 更新计数
-app.post("/api/CableList", async (req, res) => {
-  const { action } = req.body;
-  if (action === "inc") {
-    await CableList.create();
-  } else if (action === "clear") {
-    await CableList.destroy({
-      truncate: true,
-    });
-  }
-  res.send({
-    code: 0,
-    data: await CableList.count(),
-  });
-});
+// app.post("/api/CableList", async (req, res) => {
+//   const { action } = req.body;
+//   if (action === "inc") {
+//     await CableList.create();
+//   } else if (action === "clear") {
+//     await CableList.destroy({
+//       truncate: true,
+//     });
+//   }
+//   res.send({
+//     code: 0,
+//     data: await CableList.count(),
+//   });
+// });
 
 // 获取线束列表
 app.get("/api/CableList", async (req, res) => {
