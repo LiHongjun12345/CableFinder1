@@ -112,6 +112,7 @@ app.post('/api/Checkdata', async(req, res) => {
 app.get('/api/pindef', async(req, res) => {
   const { TableName } = req.query;
   const Model = sequelize.Model[TableName];
+  console.log((req.body), (req.query));
   try{
     const pindef = await Model.findAll();
     return res.json(pindef);
