@@ -114,7 +114,7 @@ app.post('/api/pindef', async(req, res) => {
   const Model = sequelize.models[TableName];
   console.log((req.body), (req.query));
   try{
-    const pindef = await sequelize.query(`select * from ${TableName}`);
+    const [pindef] = await sequelize.query(`select * from ${TableName}`);
     return res.json(pindef);
   }catch(err){
     console.error('Error find pin definition: ', err);
