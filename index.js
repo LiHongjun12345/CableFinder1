@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, CableList, SampleManage } = require("./db");
+const { init: initDB, CableList, SampleManage, audi_axpa2, audi_axpa4, bmw_mfu } = require("./db");
 const sequelize = require("sequelize");
 
 const logger = morgan("tiny");
@@ -111,7 +111,7 @@ app.post('/api/Checkdata', async(req, res) => {
 //获取pin定义
 app.get('/api/pindef', async(req, res) => {
   const { TableName } = req.query;
-  const Model = sequelize.Model[TableName];
+  const Model = sequelize.models[TableName];
   console.log((req.body), (req.query));
   try{
     const pindef = await Model.findAll();
