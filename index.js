@@ -110,9 +110,9 @@ app.post('/api/Checkdata', async(req, res) => {
 
 //获取pin定义
 app.post('/api/pindef', async(req, res) => {
-  const { TableName } = req.body;
+  const TableName = req.body;
   const Model = createDynamicModel(TableName);
-  res.json("12345");
+  res.json(TableName);
   // try{
   //   const pindef = await Model.findAll();
   //   return res.json(pindef);
