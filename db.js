@@ -61,6 +61,51 @@ const CableList = sequelize.define("CableList", {
 }
 );
 
+const audi_axpa2 = sequelize.define("audi_axpa2", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true
+  },
+  definition: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  }
+},
+{
+  tableName: 'audi_axpa2',
+  timestamps: false
+});
+
+const audi_axpa4 = sequelize.define("audi_axpa2", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true
+  },
+  definition: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  }
+},
+{
+  tableName: 'audi_axpa4',
+  timestamps: false
+});
+
+const bmw_mfu = sequelize.define("audi_axpa2", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true
+  },
+  definition: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  }
+},
+{
+  tableName: 'bmw_mfu',
+  timestamps: false
+});
+
 const SampleManage = sequelize.define("sample_manage", {
   ProjectName: {
     type: DataTypes.STRING(50),
@@ -115,5 +160,8 @@ async function init() {
 module.exports = {
   init,
   CableList,
-  SampleManage
+  SampleManage,
+  audi_axpa2,
+  audi_axpa4,
+  bmw_mfu
 };
