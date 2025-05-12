@@ -109,16 +109,18 @@ app.post('/api/Checkdata', async(req, res) => {
 });
 
 //获取pin定义
-app.post('/api/pindef', async(req, res) => {
-  const { TableName } = req.body;
+app.get('/api/pindef', async(req, res) => {
+  const { TableName } = req.query;
+  const Model = sequelize.models[TableName];
+  console.log((req.body), (req.query));
   try{
-    const pindef = await TableName.findAll();
+    const pindef = await Model.findAll();
     return res.json(pindef);
   }catch(err){
     console.error('Error find pin definition: ', err);
     return res.status(500).json({ message: 'Server error', error: err.message });
   }
-})
+});
 
 
 // 获取样件整体列表
