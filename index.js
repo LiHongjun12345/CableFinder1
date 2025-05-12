@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, CableList, SampleManage, audi_axpa2, audi_axpa4, bmw_mfu } = require("./db");
+const { init: initDB, CableList, SampleManage, createDynamicModel } = require("./db");
 const sequelize = require("sequelize");
 
 const logger = morgan("tiny");
@@ -111,12 +111,10 @@ app.post('/api/Checkdata', async(req, res) => {
 //获取pin定义
 app.post('/api/pindef', async(req, res) => {
   const { TableName } = req.body;
-  const Model = sequelize.models[TableName];
+  const Model = createDynamicModel(TableName)
   console.log((req.body), (req.query));
   try{
-    const [pindef] = await sequelize.query(`select * from ??`,
-      { replacements: [TableName] }
-    );
+    const pindef = await Model.findAll();
     return res.json(pindef);
   }catch(err){
     console.error('Error find pin definition: ', err);

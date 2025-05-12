@@ -106,6 +106,24 @@ const bmw_mfu = sequelize.define("audi_axpa2", {
   timestamps: false
 });
 
+function createDynamicModel(tableName){
+  return sequelize.define(tableName, {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    definition: {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    }
+  },
+{
+  tableName,
+  freezeTableName: true,
+  timestamps: false
+})
+};
+
 const SampleManage = sequelize.define("sample_manage", {
   ProjectName: {
     type: DataTypes.STRING(50),
@@ -161,7 +179,5 @@ module.exports = {
   init,
   CableList,
   SampleManage,
-  audi_axpa2,
-  audi_axpa4,
-  bmw_mfu
+  createDynamicModel
 };
