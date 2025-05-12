@@ -111,8 +111,7 @@ app.post('/api/Checkdata', async(req, res) => {
 //获取pin定义
 app.get('/api/pindef', async(req, res) => {
   const { TableName } = req.query;
-  const Model = sequelize.models[TableName];
-  console.log((req.body), (req.query));
+  const Model = sequelize.Model[TableName];
   try{
     const pindef = await Model.findAll();
     return res.json(pindef);
