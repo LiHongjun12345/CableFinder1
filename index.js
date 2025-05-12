@@ -112,14 +112,14 @@ app.post('/api/Checkdata', async(req, res) => {
 app.post('/api/pindef', async(req, res) => {
   const { TableName } = req.body;
   const Model = createDynamicModel(TableName)
-  console.log((req.body), (req.query));
-  try{
-    const pindef = await Model.findAll();
-    return res.json(pindef);
-  }catch(err){
-    console.error('Error find pin definition: ', err);
-    return res.status(500).json({ message: 'Server error', error: err.message });
-  }
+  res.json(req.body);
+  // try{
+  //   const pindef = await Model.findAll();
+  //   return res.json(pindef);
+  // }catch(err){
+  //   console.error('Error find pin definition: ', err);
+  //   return res.status(500).json({ message: 'Server error', error: err.message });
+  // }
 });
 
 
